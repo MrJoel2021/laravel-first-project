@@ -27,7 +27,12 @@ Route::get('/jobs', function () {
 
 // Single job page route
 Route::get('/jobs/{id}', function ($id) {
+    // Find the job in the database.
+    // If it does not exist, Laravel automatically shows 404 Not Found.
+    $job = Job::findOrFail($id);
+
+    // Send the selected job to the job.blade.php view
     return view('job', [
-        'job' => Job::find($id)
+        'job' => $job
     ]);
 });
