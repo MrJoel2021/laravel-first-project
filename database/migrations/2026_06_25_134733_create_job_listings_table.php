@@ -11,19 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('job_listings', function (Blueprint $table) {
-    // Create an automatic ID column
-    $table->id();
+        Schema::create('job_listings', function (Blueprint $table) {
+            // Create an automatic ID column
+            $table->id();
 
-    // Store the job title, for example: Director
-    $table->string('title');
+            // Connect each job listing to one employer
+            $table->foreignIdFor(\App\Models\Employer::class);
 
-    // Store the salary, for example: $50,000
-    $table->string('salary');
+            // Store the job title, for example: Director
+            $table->string('title');
 
-    // Create created_at and updated_at columns
-    $table->timestamps();
-});
+            // Store the salary, for example: $50,000
+            $table->string('salary');
+
+            // Create created_at and updated_at columns
+            $table->timestamps();
+        });
     }
 
     /**
