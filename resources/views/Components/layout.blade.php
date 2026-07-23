@@ -23,7 +23,7 @@
                     >
                 </div>
 
-                <!-- Navigation links -->
+                <!-- Left navigation links -->
                 <div class="ml-10 flex items-baseline space-x-4">
                     <x-nav-link href="/" :active="request()->is('/')">
                         Home
@@ -37,9 +37,40 @@
                         Contact
                     </x-nav-link>
 
-                    <x-nav-link href="/jobs" :active="request()->is('jobs')">
+                    <x-nav-link href="/jobs" :active="request()->is('jobs*')">
                         Jobs
                     </x-nav-link>
+                </div>
+
+                <!-- Right login/register/logout links -->
+                <div class="ml-auto flex items-center space-x-4">
+
+                    {{-- Show Login and Register only when user is NOT logged in --}}
+                    @guest
+                        <x-nav-link href="/login" :active="request()->is('login')">
+                            Log In
+                        </x-nav-link>
+
+                        <x-nav-link href="/register" :active="request()->is('register')">
+                            Register
+                        </x-nav-link>
+                    @endguest
+
+                    {{-- Show Logout only when user IS logged in --}}
+                    @auth
+                        <form method="POST" action="/logout">
+                            {{-- Laravel security token --}}
+                            @csrf
+
+                            <button
+                                type="submit"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                            >
+                                Log Out
+                            </button>
+                        </form>
+                    @endauth
+
                 </div>
 
             </div>
