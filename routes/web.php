@@ -20,8 +20,12 @@ Route::get('/contact', function () {
 
 // Jobs listing page route
 Route::get('/jobs', function () {
+    // Load jobs with their employer and show 3 jobs per page
+    $jobs = Job::with('employer')->paginate(3);
+
+    // Send the jobs to the jobs.blade.php view
     return view('jobs', [
-        'jobs' => Job::all()
+        'jobs' => $jobs
     ]);
 });
 

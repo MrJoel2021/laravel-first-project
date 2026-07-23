@@ -1,19 +1,31 @@
 <x-layout>
-    {{-- Heading for the jobs listing page --}}
+    {{-- Page heading --}}
     <x-slot:heading>
         Jobs Listing
     </x-slot:heading>
 
-    {{-- This page receives $jobs from the database --}}
-    <ul>
+    {{-- Space between each job card --}}
+    <div class="space-y-4">
         {{-- Loop through every job --}}
         @foreach ($jobs as $job)
-            <li>
-                {{-- Link to the single job page using the job id --}}
-                <a href="/jobs/{{ $job->id }}" class="text-blue-500 hover:underline">
+            <a href="/jobs/{{ $job->id }}" class="block px-4 py-6 border border-gray-200 rounded-lg">
+
+                {{-- Employer name --}}
+                <div class="font-bold text-blue-500 text-sm">
+                    {{ $job->employer->name }}
+                </div>
+
+                {{-- Job title and salary --}}
+                <div>
                     <strong>{{ $job->title }}</strong>: Pays {{ $job->salary }} per year
-                </a>
-            </li>
+                </div>
+
+            </a>
         @endforeach
-    </ul>
+    </div>
+
+    {{-- Pagination links --}}
+    <div class="mt-6">
+        {{ $jobs->links() }}
+    </div>
 </x-layout>
