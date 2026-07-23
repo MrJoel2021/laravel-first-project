@@ -13,8 +13,8 @@ class Job extends Model
     // Tell Laravel this model uses the job_listings table
     protected $table = 'job_listings';
 
-    // Allow these fields to be inserted
-    protected $fillable = ['title', 'salary'];
+  // These fields are allowed to be filled using Job::create()
+protected $fillable = ['title', 'salary', 'employer_id'];
 
     // A job belongs to one employer
     public function employer()

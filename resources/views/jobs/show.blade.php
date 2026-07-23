@@ -13,4 +13,11 @@
     <p>
         This job pays {{ $job->salary }} per year.
     </p>
+
+    {{-- Link to edit this job --}}
+    <p class="mt-6">
+        <a href="/jobs/{{ $job->id }}/edit" class="text-blue-500 font-bold">
+            Edit Job
+        </a>
+    </p>
 </x-layout>

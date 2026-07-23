@@ -26,7 +26,7 @@ class JobFactory extends Factory
             'title' => fake()->jobTitle(),
 
             // Create a salary value
-            'salary' => '$50000',
+            'salary' => '£50000',
         ];
     }
 }
